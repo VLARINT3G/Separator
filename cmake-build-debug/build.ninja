@@ -49,30 +49,37 @@ cmake_ninja_workdir = /home/vlad/CLionProjects/Separator/cmake-build-debug/
 
 build cmake_object_order_depends_target_Separator: phony || .
 
-build CMakeFiles/Separator.dir/Input.cpp.o: CXX_COMPILER__Separator_unscanned_Debug /home/vlad/CLionProjects/Separator/Input.cpp || cmake_object_order_depends_target_Separator
-  DEP_FILE = CMakeFiles/Separator.dir/Input.cpp.o.d
-  FLAGS = -g -std=gnu++14 -fdiagnostics-color=always
-  INCLUDES = -I/home/vlad/CLionProjects/Separator/.
-  OBJECT_DIR = CMakeFiles/Separator.dir
-  OBJECT_FILE_DIR = CMakeFiles/Separator.dir
-
 build CMakeFiles/Separator.dir/main.cpp.o: CXX_COMPILER__Separator_unscanned_Debug /home/vlad/CLionProjects/Separator/main.cpp || cmake_object_order_depends_target_Separator
   DEP_FILE = CMakeFiles/Separator.dir/main.cpp.o.d
-  FLAGS = -g -std=gnu++14 -fdiagnostics-color=always
+  FLAGS = -g -std=gnu++17 -fdiagnostics-color=always
   INCLUDES = -I/home/vlad/CLionProjects/Separator/.
   OBJECT_DIR = CMakeFiles/Separator.dir
   OBJECT_FILE_DIR = CMakeFiles/Separator.dir
 
-build CMakeFiles/Separator.dir/Out.cpp.o: CXX_COMPILER__Separator_unscanned_Debug /home/vlad/CLionProjects/Separator/Out.cpp || cmake_object_order_depends_target_Separator
-  DEP_FILE = CMakeFiles/Separator.dir/Out.cpp.o.d
-  FLAGS = -g -std=gnu++14 -fdiagnostics-color=always
+build CMakeFiles/Separator.dir/Input.cpp.o: CXX_COMPILER__Separator_unscanned_Debug /home/vlad/CLionProjects/Separator/Input.cpp || cmake_object_order_depends_target_Separator
+  DEP_FILE = CMakeFiles/Separator.dir/Input.cpp.o.d
+  FLAGS = -g -std=gnu++17 -fdiagnostics-color=always
   INCLUDES = -I/home/vlad/CLionProjects/Separator/.
   OBJECT_DIR = CMakeFiles/Separator.dir
   OBJECT_FILE_DIR = CMakeFiles/Separator.dir
 
 build CMakeFiles/Separator.dir/Work.cpp.o: CXX_COMPILER__Separator_unscanned_Debug /home/vlad/CLionProjects/Separator/Work.cpp || cmake_object_order_depends_target_Separator
   DEP_FILE = CMakeFiles/Separator.dir/Work.cpp.o.d
-  FLAGS = -g -std=gnu++14 -fdiagnostics-color=always
+  FLAGS = -g -std=gnu++17 -fdiagnostics-color=always
+  INCLUDES = -I/home/vlad/CLionProjects/Separator/.
+  OBJECT_DIR = CMakeFiles/Separator.dir
+  OBJECT_FILE_DIR = CMakeFiles/Separator.dir
+
+build CMakeFiles/Separator.dir/Out.cpp.o: CXX_COMPILER__Separator_unscanned_Debug /home/vlad/CLionProjects/Separator/Out.cpp || cmake_object_order_depends_target_Separator
+  DEP_FILE = CMakeFiles/Separator.dir/Out.cpp.o.d
+  FLAGS = -g -std=gnu++17 -fdiagnostics-color=always
+  INCLUDES = -I/home/vlad/CLionProjects/Separator/.
+  OBJECT_DIR = CMakeFiles/Separator.dir
+  OBJECT_FILE_DIR = CMakeFiles/Separator.dir
+
+build CMakeFiles/Separator.dir/Database.cpp.o: CXX_COMPILER__Separator_unscanned_Debug /home/vlad/CLionProjects/Separator/Database.cpp || cmake_object_order_depends_target_Separator
+  DEP_FILE = CMakeFiles/Separator.dir/Database.cpp.o.d
+  FLAGS = -g -std=gnu++17 -fdiagnostics-color=always
   INCLUDES = -I/home/vlad/CLionProjects/Separator/.
   OBJECT_DIR = CMakeFiles/Separator.dir
   OBJECT_FILE_DIR = CMakeFiles/Separator.dir
@@ -85,7 +92,7 @@ build CMakeFiles/Separator.dir/Work.cpp.o: CXX_COMPILER__Separator_unscanned_Deb
 #############################################
 # Link the executable Separator
 
-build Separator: CXX_EXECUTABLE_LINKER__Separator_Debug CMakeFiles/Separator.dir/Input.cpp.o CMakeFiles/Separator.dir/main.cpp.o CMakeFiles/Separator.dir/Out.cpp.o CMakeFiles/Separator.dir/Work.cpp.o | /usr/lib/x86_64-linux-gnu/libsqlite3.so
+build Separator: CXX_EXECUTABLE_LINKER__Separator_Debug CMakeFiles/Separator.dir/main.cpp.o CMakeFiles/Separator.dir/Input.cpp.o CMakeFiles/Separator.dir/Work.cpp.o CMakeFiles/Separator.dir/Out.cpp.o CMakeFiles/Separator.dir/Database.cpp.o | /usr/lib/x86_64-linux-gnu/libsqlite3.so
   FLAGS = -g
   LINK_LIBRARIES = /usr/lib/x86_64-linux-gnu/libsqlite3.so
   OBJECT_DIR = CMakeFiles/Separator.dir

@@ -1,50 +1,28 @@
 /**
  * @file Input.h
- * @brief Заголовочный файл для класса Input, который отвечает за ввод и хранение текста.
+ * @brief Заголовочный файл для ввода текста.
  */
 
 #pragma once
+
 #include <vector>
 #include <string>
 
-/**
- * @brief Класс для ввода данных.
- */
 class Input {
-private:
-    std::vector<std::string> text;  ///< Вектор строк текста.
-    std::string razdel;             ///< Строка с разделителями.
-    char zamena;                    ///< Символ замены для гласных букв.
-    bool status;                    ///< Флаг, указывающий, введен ли текст.
-
 public:
-    /**
-     * @brief Устанавливает разделители.
-     */
-    void setRazdel();
-
-    /**
-     * @brief Вводит строки текста от пользователя.
-     */
+    void setDelimiters();
     void setText();
-
-    /**
-     * @brief Устанавливает символ замены для гласных букв.
-     */
-    void setZamena();
-
-    /**
-     * @brief Проверяет, был ли введен текст.
-     * @return true, если текст введен, иначе false.
-     */
+    void setReplacement();
     bool hasText() const;
+    bool hasReplacement() const;
+    std::string getTextAsString() const; // Метод для объединения текста в строку
+    std::vector<std::string>& getText() { return text_; }
+    const std::vector<std::string>& getText() const { return text_; }
+    const std::string& getDelimiters() const { return delimiters_; }
+    char getReplacement() const { return replacement_; }
 
-    /**
-     * @brief Проверяет, установлен ли символ замены.
-     * @return true, если символ замены установлен, иначе false.
-     */
-    bool hasZamena() const;
-
-    friend class Work;  ///< Дает доступ классу Work.
-    friend class Out;   ///< Дает доступ классу Out.
+private:
+    std::vector<std::string> text_;
+    std::string delimiters_;
+    char replacement_ = '\0';
 };

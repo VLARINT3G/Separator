@@ -1,104 +1,85 @@
 /**
  * @file main.cpp
- * @brief Основной файл программы для обработки текста с использованием C++, SQLite и Doxygen.
+ * @brief Основной файл программы, отвечающий за запуск и взаимодействие между компонентами.
  */
 
-#include <iostream>
 #include <Input.h>
 #include <Work.h>
 #include <Out.h>
 #include <Database.h>
-#include <sqlite3.h>
 
-using namespace std;
-
-/**
- * @brief Инициализация базы данных SQLite.
- * @param db Указатель на базу данных SQLite.
- * @return true, если база данных успешно открыта и таблица создана, иначе false.
- */
-bool initDatabase(sqlite3*& db) {
-    if (sqlite3_open("text_processing.db", &db)) {
-        cerr << "Не удалось открыть базу данных: " << sqlite3_errmsg(db) << endl;
-        return false;
-    }
-    const char* sql = "CREATE TABLE IF NOT EXISTS TextEntries (id INTEGER PRIMARY KEY, text TEXT);";
-    char* errMsg = nullptr;
-    if (sqlite3_exec(db, sql, nullptr, nullptr, &errMsg) != SQLITE_OK) {
-        cerr << "Ошибка SQL: " << errMsg << endl;
-        sqlite3_free(errMsg);
-        return false;
-    }
-    return true;
-}
+#include <iostream>
+#include <memory>
 
 /**
- * @brief Основная функция программы.
- * @return Код завершения программы (0 - успешное выполнение).
+ * @brief Точка входа в программу.
+ * @return Код завершения программы (0 при успешном завершении).
  */
 int main() {
-    Input input;
-    Work processor;
-    Out output;
-    sqlite3* db;
+    auto db = std::make_shared<Database>("text_processing.db");
+    CreateTable table("TextEntries");
+    table.addStringColumn("text");
 
-    // Инициализация базы данных
-    if (!initDatabase(db)) {
+    if (!db->addTable(table)) {
+        std::cerr << "Failed to initialize database." << std::endl;
         return 1;
     }
 
+    Input input;
+    Work processor;
+    Out output;
+
     char choice;
     do {
-        cout << "\nМеню:\n";
-        cout << "1) Ввести текст\n";
-        cout << "2) Обработать текст\n";
-        cout << "3) Ввести разделители и символ замены\n";
-        cout << "4) Показать текст\n";
-        cout << "5) Выход\n";
-        cout << "Выберите действие: ";
-        cin >> choice;
+        std::cout << "\nMenu:\n";
+        std::cout << "1) Enter text\n";
+        std::cout << "2) Process text\n";
+        std::cout << "3) Enter delimiters and replacement character\n";
+        std::cout << "4) Show text\n";
+        std::cout << "5) Exit\n";
+        std::cout << "Select an option: ";
+        std::cin >> choice;
 
         switch (choice) {
             case '1':
-                cin.ignore();
+                std::cin.ignore();
                 input.setText();
                 break;
             case '2':
-                if (input.hasText() && input.hasZamena()) {
+                if (input.hasText() && input.hasReplacement()) {
                     processor.processText(input);
-                    cout << "Текст обработан." << endl;
+                    std::cout << "Text processed." << std::endl;
                 } else {
-                    cout << "Ошибка: нет текста или символа замены." << endl;
+                    std::cout << "Error: No text or replacement character provided." << std::endl;
                 }
                 break;
             case '3':
-                input.setRazdel();
-                input.setZamena();
+                input.setDelimiters();
+                input.setReplacement();
                 break;
             case '4':
                 if (input.hasText()) {
                     output.show(input);
-                    cout << "\nСохранить текст в файл? (Y/N): ";
+
+                    std::cout << "\nSave text to file? (Y/N): ";
                     char saveChoice;
-                    cin >> saveChoice;
+                    std::cin >> saveChoice;
                     if (saveChoice == 'Y' || saveChoice == 'y') {
                         output.saveToFile(input, "Kursach.txt");
-                        output.saveToDatabase(input, db);
-                        cout << "Текст сохранен." << endl;
+                        db->exec("INSERT INTO TextEntries (text) VALUES ('" + input.getTextAsString() + "');");
+                        std::cout << "Text saved." << std::endl;
                     }
                 } else {
-                    cout << "Ошибка: нет текста." << endl;
+                    std::cout << "Error: No text to display." << std::endl;
                 }
                 break;
             case '5':
-                cout << "Выход из программы." << endl;
+                std::cout << "Exiting program." << std::endl;
                 break;
             default:
-                cout << "Неверный выбор, попробуйте снова." << endl;
+                std::cout << "Invalid choice. Please try again." << std::endl;
         }
     } while (choice != '5');
 
-    // Закрытие базы данных
-    sqlite3_close(db);
     return 0;
 }

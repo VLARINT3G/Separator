@@ -1,34 +1,46 @@
+/**
+ * @file Input.cpp
+ * @brief Реализация методов ввода текста.
+ */
+
 #include <Input.h>
 #include <iostream>
-using namespace std;
+#include <sstream>
 
-void Input::setRazdel() {
-    cout << "Введите разделители: ";
-    cin.ignore();
-    getline(cin, razdel);
+void Input::setDelimiters() {
+    std::cout << "Enter delimiters: ";
+    std::cin.ignore();
+    std::getline(std::cin, delimiters_);
 }
 
 void Input::setText() {
-    status = true;
-    string buffer;
-    cout << "Введите строки текста (для завершения введите пустую строку):" << endl;
+    std::string buffer;
+    std::cout << "Enter text lines (end with an empty line):\n";
 
     while (true) {
-        getline(cin, buffer);
+        std::getline(std::cin, buffer);
         if (buffer.empty()) break;
-        text.push_back(buffer);
+        text_.push_back(buffer);
     }
 }
 
-void Input::setZamena() {
-    cout << "Введите символ замены: ";
-    cin >> zamena;
+void Input::setReplacement() {
+    std::cout << "Enter replacement character: ";
+    std::cin >> replacement_;
 }
 
 bool Input::hasText() const {
-    return !text.empty();
+    return !text_.empty();
 }
 
-bool Input::hasZamena() const {
-    return zamena != '\0';
+bool Input::hasReplacement() const {
+    return replacement_ != '\0';
+}
+
+std::string Input::getTextAsString() const {
+    std::ostringstream combinedText;
+    for (const auto& line : text_) {
+        combinedText << line << "\\n";
+    }
+    return combinedText.str();
 }
