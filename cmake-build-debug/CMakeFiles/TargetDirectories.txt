@@ -1,3 +1,0 @@
-/home/vlad/CLionProjects/Separator/cmake-build-debug/CMakeFiles/Separator.dir
-/home/vlad/CLionProjects/Separator/cmake-build-debug/CMakeFiles/edit_cache.dir
-/home/vlad/CLionProjects/Separator/cmake-build-debug/CMakeFiles/rebuild_cache.dir
