@@ -1,0 +1,45 @@
+# --- Файлы сборки CMake ---
+build/
+cmake-build-*/
+CMakeCache.txt
+CMakeFiles/
+Makefile
+cmake_install.cmake
+CTestTestfile.cmake
+
+# --- Исполняемые и объектные файлы ---
+*.o
+*.obj
+*.exe
+*.out
+*.app
+*.a
+*.lib
+*.so
+*.dylib
+*.dll
+
+# --- SQLite база данных ---
+*.db
+*.sqlite
+*.sqlite3
+*.db-journal
+
+# --- IDE (CLion и VSCode) ---
+.idea/
+.vscode/
+*.iml
+
+# --- Логи и временные файлы ---
+*.log
+*.tmp
+*.bak
+*.swp
+*.~*
+
+# --- Системные файлы ---
+.DS_Store
+Thumbs.db
+
+# --- Исполняемый файл проекта ---
+Separator  # Исполняемый файл вашего проекта
