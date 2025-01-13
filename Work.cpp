@@ -1,10 +1,11 @@
-#include "Work.h"
-#include <algorithm>
-
 /**
  * @file Work.cpp
  * @brief Реализация методов класса Work для обработки текста.
  */
+
+#include <Work.h>
+#include <algorithm>
+
 
 void Work::ProcessText(Input& input) {
     std::string processedText;
