@@ -1,11 +1,11 @@
-#pragma once
-#include <string>
-#include <sqlite3.h>
-
 /**
  * @file Database.h
  * @brief Определяет класс для работы с базой данных SQLite.
  */
+
+#pragma once
+#include <string>
+#include <sqlite3.h>
 
 class Database {
 public:
