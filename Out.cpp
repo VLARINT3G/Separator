@@ -1,11 +1,11 @@
-#include <Out.h>
-#include <fstream>
-#include <iostream>
-
 /**
  * @file Out.cpp
  * @brief Реализация методов класса Out.
  */
+
+#include <Out.h>
+#include <fstream>
+#include <iostream>
 
 void Out::Show(const Input& input) const {
     std::cout << "Text: " << input.GetText() << std::endl;
