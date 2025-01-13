@@ -1,11 +1,11 @@
-#pragma once
-#include <string>
-#include <vector>
-
 /**
  * @file Input.h
  * @brief Класс для работы с вводом текста и настройкой параметров обработки.
  */
+
+#pragma once
+#include <string>
+#include <vector>
 
 class Input {
 public:
