@@ -1,9 +1,9 @@
-#include <Input.h>
-
 /**
  * @file Input.cpp
  * @brief Реализация методов класса Input.
  */
+
+#include <Input.h>
 
 void Input::SetText(const std::string& newText) {
     text = newText;
