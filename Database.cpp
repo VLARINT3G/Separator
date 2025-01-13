@@ -1,11 +1,11 @@
-#include <Database.h>
-#include <stdexcept>
-#include <iostream>
-
 /**
  * @file Database.cpp
  * @brief Реализация методов класса Database для работы с SQLite.
  */
+
+#include <Database.h>
+#include <stdexcept>
+#include <iostream>
 
 // Конструктор
 Database::Database(const std::string& databasePath) : database(nullptr) {
