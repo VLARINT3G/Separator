@@ -1,35 +1,46 @@
-#include <CreateTable.h>
-#include <Separator.h>  ///< Подключение класса Separator для корректной работы с разделителями.
+#pragma once
+
+#include <string>
+#include <vector>
+#include <Separator.h>
 
 /**
- * @brief Конструктор класса CreateTable.
- * @param tableName Название таблицы.
+ * @brief Определение типа для названия таблицы.
  */
-CreateTable::CreateTable(const TableName &tableName) : tableName_(tableName) {}
+using TableName = std::string;
 
 /**
- * @brief Добавляет колонку типа TEXT в таблицу.
- * @details Метод не выполняет SQL-запрос, а лишь сохраняет имя колонки,
- * чтобы затем использовать его в SQL-операции CREATE TABLE.
- * @param columnName Имя добавляемой колонки.
+ * @brief Определение типа для списка столбцов таблицы.
  */
-void CreateTable::AddStringColumn(const std::string &columnName) {
-  columns_.emplace_back(columnName + " TEXT");
-}
+using ColumnList = std::vector<std::string>;
 
 /**
- * @brief Генерирует SQL-запрос для создания таблицы.
- * @return Строка с SQL-запросом.
+ * @class CreateTable
+ * @brief Класс для создания SQL-запроса создания таблицы.
  */
-std::string CreateTable::GetCreateQuery() const {
-  std::string query = "CREATE TABLE IF NOT EXISTS " + tableName_ + " (";
-  Separator separator(", ");  ///< Используем вспомогательный класс для вставки разделителя.
+class CreateTable {
+ public:
+  /**
+   * @brief Конструктор класса CreateTable.
+   * @param tableName Название таблицы.
+   */
+  explicit CreateTable(const TableName &tableName);
 
-  for (const auto &column : columns_) {
-    query += separator.Get();
-    query += column;
-  }
+  /**
+   * @brief Добавляет в структуру таблицы новую колонку типа TEXT.
+   * @details Метод не выполняет SQL-запрос, а лишь сохраняет имя колонки,
+   * чтобы затем использовать его в SQL-операции CREATE TABLE.
+   * @param columnName Имя добавляемой колонки.
+   */
+  void AddStringColumn(const std::string &columnName);
 
-  query += ");";
-  return query;
-}
+  /**
+   * @brief Генерирует SQL-запрос для создания таблицы.
+   * @return Строка с SQL-запросом.
+   */
+  std::string GetCreateQuery() const;
+
+ private:
+  TableName tableName_;  ///< Название таблицы.
+  ColumnList columns_;  ///< Список столбцов таблицы.
+};
