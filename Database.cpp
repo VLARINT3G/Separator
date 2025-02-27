@@ -10,7 +10,7 @@
 // Конструктор
 Database::Database(const std::string& databasePath) : database(nullptr) {
     if (sqlite3_open(databasePath.c_str(), &database) != SQLITE_OK) {
-        throw std::runtime_error("Не удалось открыть базу данных: " + std::string(sqlite3_errmsg(database)));
+        throw std::runtime_error("Couldn't open the database: " + std::string(sqlite3_errmsg(database)));
     }
 }
 
@@ -25,7 +25,7 @@ Database::~Database() {
 bool Database::AddTable(const std::string& tableDefinition) {
     char* errorMessage = nullptr;
     if (sqlite3_exec(database, tableDefinition.c_str(), nullptr, nullptr, &errorMessage) != SQLITE_OK) {
-        LogError("Ошибка создания таблицы: " + std::string(errorMessage));
+        LogError("Error creating a while table: " + std::string(errorMessage));
         sqlite3_free(errorMessage);
         return false;
     }
