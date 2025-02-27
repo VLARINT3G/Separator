@@ -6,15 +6,14 @@
 #include <Work.h>
 #include <algorithm>
 
-
-void Work::ProcessText(Input& input) {
-    std::string processedText;
-    for (char c : input.GetText()) {
-        if (std::find(input.GetDelimiters().begin(), input.GetDelimiters().end(), c) != input.GetDelimiters().end()) {
-            processedText += input.GetReplacement();
-        } else {
-            processedText += c;
-        }
+void Work::ProcessText(Input &input) {
+  std::string processedText;
+  for (char c : input.GetText()) {
+    if (std::find(input.GetDelimiters().begin(), input.GetDelimiters().end(), c) != input.GetDelimiters().end()) {
+      processedText += input.GetReplacement();
+    } else {
+      processedText += c;
     }
-    input.SetText(processedText);
+  }
+  input.SetText(processedText);
 }

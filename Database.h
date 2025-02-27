@@ -8,13 +8,13 @@
 #include <sqlite3.h>
 
 class Database {
-public:
-    explicit Database(const std::string& databasePath);
-    ~Database();
+ public:
+  explicit Database(const std::string &databasePath);
+  ~Database();
 
-    bool AddTable(const std::string& tableDefinition);
-    void LogError(const std::string& message) const;
+  bool AddTable(const std::string &tableDefinition);
+  void LogError(const std::string &message) const;
 
-private:
-    sqlite3* database;
+ private:
+  sqlite3 *database;
 };

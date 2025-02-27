@@ -7,6 +7,6 @@
  */
 
 class Work {
-public:
-    void ProcessText(Input& input);
+ public:
+  void ProcessText(Input &input);
 };
