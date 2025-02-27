@@ -20,18 +20,18 @@ int main() {
 
         char choice;
         do {
-            std::cout << "\nМеню:\n"
-                      << "1) Ввести текст\n"
-                      << "2) Обработать текст\n"
-                      << "3) Ввести разделители и символ замены\n"
-                      << "4) Показать текст\n"
-                      << "5) Выйти\n"
-                      << "Выберите пункт: ";
+            std::cout << "\nMenu:\n"
+                      << "1) Enter text\n"
+                      << "2) Process the text\n"
+                      << "3) Put the sepatator and replacement symbol\n"
+                      << "4) Show text\n"
+                      << "5) Quit\n"
+                      << "Choose option: ";
             std::cin >> choice;
 
             switch (choice) {
                 case '1': {
-                    std::cout << "Введите текст: ";
+                    std::cout << "Write down the text: ";
                     std::cin.ignore();
                     std::string text;
                     std::getline(std::cin, text);
@@ -40,35 +40,35 @@ int main() {
                 }
                 case '2': {
                     processor.ProcessText(input);
-                    std::cout << "Текст обработан." << std::endl;
+                    std::cout << "Text has been prossed." << std::endl;
                     break;
                 }
                 case '3': {
-                    std::cout << "Введите разделители (без пробелов): ";
+                    std::cout << "Write down the separator (without blank space): ";
                     std::string delimitersInput;
                     std::cin >> delimitersInput;
                     input.SetDelimiters(std::vector<char>(delimitersInput.begin(), delimitersInput.end()));
 
-                    std::cout << "Введите символ замены: ";
+                    std::cout << "Enter the replacement character: ";
                     char replacement;
                     std::cin >> replacement;
                     input.SetReplacement(replacement);
                     break;
                 }
                 case '4': {
-                    std::cout << "Текущий текст: " << input.GetText() << std::endl;
+                    std::cout << "Current text: " << input.GetText() << std::endl;
                     break;
                 }
                 case '5': {
-                    std::cout << "Выход." << std::endl;
+                    std::cout << "Exit." << std::endl;
                     break;
                 }
                 default:
-                    std::cout << "Некорректный ввод. Попробуйте снова." << std::endl;
+                    std::cout << "Invalid input. Try again." << std::endl;
             }
         } while (choice != '5');
     } catch (const std::exception& e) {
-        std::cerr << "Ошибка: " << e.what() << std::endl;
+        std::cerr << "Error: " << e.what() << std::endl;
         return 1;
     }
 
