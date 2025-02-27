@@ -1,24 +1,35 @@
-/**
- * @file CreateTable.cpp
- * @brief Реализация методов для создания таблиц в базе данных.
- */
-
 #include <CreateTable.h>
+#include <Separator.h>  ///< Подключение класса Separator для корректной работы с разделителями.
 
-CreateTable::CreateTable(const std::string& tableName) : tableName(tableName) {}
+/**
+ * @brief Конструктор класса CreateTable.
+ * @param tableName Название таблицы.
+ */
+CreateTable::CreateTable(const TableName &tableName) : tableName_(tableName) {}
 
-void CreateTable::AddTextColumn(const std::string& columnName) {
-    columns.emplace_back(columnName + " TEXT");
+/**
+ * @brief Добавляет колонку типа TEXT в таблицу.
+ * @details Метод не выполняет SQL-запрос, а лишь сохраняет имя колонки,
+ * чтобы затем использовать его в SQL-операции CREATE TABLE.
+ * @param columnName Имя добавляемой колонки.
+ */
+void CreateTable::AddStringColumn(const std::string &columnName) {
+  columns_.emplace_back(columnName + " TEXT");
 }
 
+/**
+ * @brief Генерирует SQL-запрос для создания таблицы.
+ * @return Строка с SQL-запросом.
+ */
 std::string CreateTable::GetCreateQuery() const {
-    std::string query = "CREATE TABLE IF NOT EXISTS " + tableName + " (";
-    for (size_t i = 0; i < columns.size(); ++i) {
-        query += columns[i];
-        if (i != columns.size() - 1) {
-            query += ", ";
-        }
-    }
-    query += ");";
-    return query;
+  std::string query = "CREATE TABLE IF NOT EXISTS " + tableName_ + " (";
+  Separator separator(", ");  ///< Используем вспомогательный класс для вставки разделителя.
+
+  for (const auto &column : columns_) {
+    query += separator.Get();
+    query += column;
+  }
+
+  query += ");";
+  return query;
 }
