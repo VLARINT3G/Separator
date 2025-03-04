@@ -1,11 +1,21 @@
 #include <Separator.h>
 
-Separator::Separator(const std::string &subStr) : subStr_(subStr), first_(false) {}
+/**
+ * @brief Конструктор Separator, инициализирующий разделитель и флаг первого вызова.
+ * @param subStr Разделитель, который будет использоваться после первого вызова Get().
+ */
+Separator::Separator(const std::string &subStr) : subStr_(subStr), first_(true) {}
 
-std::string Separator::Get() const {
-  if (first_) {
-    return {};
-  }
-  first_ = true;
-  return subStr_;
+/**
+ * @brief Возвращает строку-разделитель.
+ *
+ * При первом вызове возвращает пустую строку, а при последующих — установленный разделитель.
+ * @return std::string Пустая строка при первом вызове, затем установленный разделитель.
+ */
+std::string Separator::Get() {
+    if (first_) {
+        first_ = false;  // После первого вызова меняем флаг
+        return "";       // Первый вызов возвращает пустую строку
+    }
+    return subStr_;    // Все последующие вызовы возвращают разделитель
 }
