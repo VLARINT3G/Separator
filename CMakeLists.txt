@@ -1,4 +1,5 @@
-cmake_minimum_required(VERSION 3.29)
+set(CMAKE_GENERATOR "Unix Makefiles")
+cmake_minimum_required(VERSION 3.22)
 project(Separator)
 
 set(CMAKE_CXX_STANDARD 17)
