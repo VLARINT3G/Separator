@@ -2,7 +2,7 @@
 
 #include <string>
 #include <vector>
-#include <Separator.h> // Убедитесь, что эта библиотека подключена правильно
+#include <Separator.h>
 
 /**
  * @brief Определение типа для названия таблицы.
