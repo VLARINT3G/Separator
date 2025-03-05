@@ -23,7 +23,7 @@ add_executable(unit_tests
         test_separator.cpp
         test_create_table.cpp
         test_database.cpp
-        ../CreateTable.cpp  # <-- Убедитесь, что этот файл добавлен
+        ../CreateTable.cpp
 )
 
 # Линкуем тесты с библиотеками: GoogleTest, библиотека Separator и SQLite
