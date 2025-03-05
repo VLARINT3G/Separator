@@ -1,4 +1,4 @@
-#include "CreateTable.h"  // Подключаем заголовочный файл
+#include <CreateTable.h>  // Подключаем заголовочный файл
 
 CreateTable::CreateTable(const TableName &tableName)
         : tableName_(tableName) {}
